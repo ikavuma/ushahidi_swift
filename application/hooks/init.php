@@ -20,6 +20,9 @@ if (!file_exists(DOCROOT."application/config/database.php"))
 
 	//	echo " in application/hooks/init.php _SERVER['ORIG_PATH_INFO'] = ".$_SERVER['ORIG_PATH_INFO']."<br/>";
 	//	echo "  in application/hooks/init.php _SERVER['PATH_INFO'] = ".$_SERVER['PATH_INFO']."<br/>";
+
+//		$url = str_replace(Kohana::config('config.site_domain'), '/', $_SERVER["REQUEST_URI"]);
+
 	/**
 	 * The following lines we removed and replaced with a rewrite rule in the .htaccess file
 	 */
@@ -27,5 +30,3 @@ if (!file_exists(DOCROOT."application/config/database.php"))
 	//	$_SERVER['ORIG_PATH_INFO'] = $url;
 	//	$_SERVER['PATH_INFO'] = $url;
 	//	$_SERVER['PHP_SELF'] = $url;
-	
-	
