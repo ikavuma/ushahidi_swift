@@ -433,6 +433,11 @@ class Messages_Controller extends Admin_Controller
 
 			//Perform Hashtag Search
 			$hashtags = explode(',',$settings->twitter_hashtags);
+			if($hashtags[0] == '') //don't process empty strings
+			{
+				    return false;
+			}	
+			
 			foreach($hashtags as $hashtag){
 				$page = 1;
 				$have_results = TRUE; //just starting us off as true, although there may be no results
@@ -507,7 +512,7 @@ class Messages_Controller extends Admin_Controller
 
 				if(isset($full_tweet) && !empty($full_tweet)) {
 					// We need to check for duplicates.
-					// Note: Heave on server.
+					// Note: Leave on server.
 					$dupe_count = ORM::factory('twitter')->where(" tweet_date = '".$tweet_date."' and tweet_from = '".$tweet_from."' and tweet = '".$tweet."' ")->count_all();
 					if ($dupe_count == 0) {
 						// Add tweet to database
@@ -560,7 +565,7 @@ class Messages_Controller extends Admin_Controller
 			//XXX For Twitter Search, should we curl Twitter for a full tweet?
 			
     		$reporter = null;
-    	//	if ($tweet_user) {
+
 	    		$reporter_model = new Reporter_Model();
 				$reporters = $reporter_model->where('service_id', $service->id)->
 				             where('service_userid', $tweet->{'from_user_id'})->
@@ -593,7 +598,7 @@ class Messages_Controller extends Admin_Controller
 	    			// reporter already exists
 	    			$reporter = $reporters[0];
 	    		}
-	  //}
+
 	    		$counter2 = ORM::factory('message')->where('message',$tweet->{'text'})->count_all() ;  
 					//->where('service_messageid', $tweet->{'id'})	
 					
