@@ -105,7 +105,7 @@ $(function() {
 			 echo	"	values: [".$_SESSION['verocity_min']." , ".$_SESSION['verocity_max']." ],";
 			}else
 			{ ?> 
-						values: [0, 100],
+						values: [20, 100],
 				<?php
 			}
 				?>
@@ -130,7 +130,6 @@ $(function() {
 		var addthis_config = {
 		   ui_click: true
 		}	
-		<?php echo $js . "\n"; ?>
 		
 		<?php echo $js2 . "\n"; ?>
 		
@@ -160,12 +159,12 @@ $(function() {
 						
 				<!-- / login -->
 				<div class="language-box">				
-						<input type="text" name="username" id="username" class="login_text" value="Username" />					
+						<input type="text" name="username" id="username" class="login_text" size="10" value="Username" />					
 				</div>
 				<div class="search-form">
 						<ul>
 							<li><input name="password" type="password" class="login_text" id="password" size="10" value="password" /></li>
-							<li><input type="image" src="../media/img/right_arrow.jpg" alt="submit" /></li>
+							<li><input type="image" src="<?php echo url::base() ;?>media/img/right_arrow.jpg" alt="submit" /></li>
 						</ul>					
 				</div>
 					<?php } ?>
