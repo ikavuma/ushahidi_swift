@@ -78,8 +78,8 @@ $(function() {
 			min: 0,
 			max: 100,
 			<?php 
-					if(isset( $_SESSION['verocity_min']) && isset( $_SESSION['verocity_max'])){
-			 echo	"	values: [".$_SESSION['verocity_min']." , ".$_SESSION['verocity_max']." ],";
+					if(isset( $_SESSION['veracity_min']) && isset( $_SESSION['veracity_max'])){
+			 echo	"	values: [".$_SESSION['veracity_min']." , ".$_SESSION['veracity_max']." ],";
 			}else
 			{ ?> 
 						values: [0, 100],
@@ -88,12 +88,12 @@ $(function() {
 				?>
 
 			slide: function(event, ui) {
-				$("#verocity_min").val(ui.values[0]);
-			  $("#verocity_max").val(ui.values[1]);
+				$("#veracity_min").val(ui.values[0]);
+			  $("#veracity_max").val(ui.values[1]);
 			}
 		});
-		$("#verocity_min").val( $("#slider-range").slider("values", 0));
-		$("#verocity_max").val( $("#slider-range").slider("values", 1));
+		$("#veracity_min").val( $("#slider-range").slider("values", 0));
+		$("#veracity_max").val( $("#slider-range").slider("values", 1));
 	});
 
 	</script>
@@ -165,7 +165,7 @@ $(function() {
 				<div id="mainmenu" class="clearingfix">
 					<ul>
 						<li><a href="<?php echo url::base() . "main" ?>" <?php if ($this_page == 'home') echo 'class="active"'; ?>><?php echo Kohana::lang('ui_main.home'); ?></a></li>
-						<li><a href="<?php echo url::base() . "#" ?>" <?php if ($this_page == 'reports') echo 'class="active"'; ?>><?php echo Kohana::lang('ui_main.reports'); ?></a></li>
+						<<li><a href="<?php echo url::base() . "taggedfeeds/index/page/1" ?>" <?php if ($this_page == 'reports_submit') echo 'class="active"'; ?>><?php echo Kohana::lang('ui_main.submit'); ?></a></li>
 						<li><a href="<?php echo url::base() . "reports/submit" ?>" <?php if ($this_page == 'reports_submit') echo 'class="active"'; ?>><?php echo Kohana::lang('ui_main.submit'); ?></a></li>
 				<!-- Commenting out 'Download Reports' 
 				<li><a href="<?php echo url::base() . "alerts" ?>" <?php if ($this_page == 'alerts') echo 'class="active"'; ?>><?php echo Kohana::lang('ui_main.alerts'); ?></a></li> 
