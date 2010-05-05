@@ -101,13 +101,13 @@ class TwitterSearchParser implements IParser {
                 $date = $tweet->{'created_at'};
                 $tweet_user_id = $tweet->{'from_user_id'};
                 $tweet_id = $tweet->{'id'};
-               // $langcode = $tweet->{'language'};
+                $langcode = $tweet->{'iso_language_code'};
                  //Create a new Content item
                 $item = \Swiftriver\Core\ObjectModel\ObjectFactories\ContentFactory::CreateContent($source);
 
                 //Fill the Content Item
                 $item->text[] = new \Swiftriver\Core\ObjectModel\LanguageSpecificText(
-                       null ,// $langcode, //here we set null as we dont know the language yet
+                        $langcode, //here we set null as we dont know the language yet
                         $title,
                         array($description));
                 $item->link = $contentLink;
