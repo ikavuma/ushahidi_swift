@@ -24,7 +24,7 @@ class TwitterSearchParser implements IParser {
         //Extract the required variables
         $SearchKeyword = $parameters["SearchKeyword"];
         if(!isset($SearchKeyword) || ($SearchKeyword == "")) {
-            $logger->log("Core::Modules::SiSPS::Parsers::TwitterSearchParser::GetAndParse [the parapeter 'feedUrl' was not supplued. Returning null]", \PEAR_LOG_DEBUG);
+            $logger->log("Core::Modules::SiSPS::Parsers::TwitterSearchParser::GetAndParse [the parapeter 'SearchKeyword' was not supplued. Returning null]", \PEAR_LOG_DEBUG);
             $logger->log("Core::Modules::SiSPS::Parsers::TwitterSearchParser::GetAndParse [Method finished]", \PEAR_LOG_DEBUG);
             return null;
         }
@@ -33,7 +33,7 @@ class TwitterSearchParser implements IParser {
 
         $logger->log("Core::Modules::SiSPS::Parsers::TwitterSearchParser::GetAndParse [START: Constructing source object]", \PEAR_LOG_DEBUG);
 
-        //Create the source that will be used by all the content items Passing in the feed uri which can
+        //Create the source that will be used by all the content items Passing in the Search keyword which can
         //be used to uniquly identify the source of the content
         $source = \Swiftriver\Core\ObjectModel\ObjectFactories\SourceFactory::CreateSourceFromID($SearchKeyword);
 
@@ -94,6 +94,7 @@ class TwitterSearchParser implements IParser {
             }
                 $logger->log("Core::Modules::SiSPS::Parsers::TwitterSearchParser::GetAndParse [Adding feed item]", \PEAR_LOG_DEBUG);
 
+                //Setup the variables to be used in the content item.
                 $title = $tweet->{'text'};
                 $description = $tweet->{'text'};
                 $contentLink = $tweet->{'source'};
@@ -106,7 +107,7 @@ class TwitterSearchParser implements IParser {
 
                 //Fill the Content Item
                 $item->text[] = new \Swiftriver\Core\ObjectModel\LanguageSpecificText(
-                        $langcode, //here we set null as we dont know the language yet
+                        $langcode, 
                         $title,
                         array($description));
                 $item->link = $contentLink;
