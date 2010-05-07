@@ -25,7 +25,7 @@ class EmailParserTest extends \PHPUnit_Framework_TestCase {
      * array of content Items.
      */
     public function testThatTheEmailParserCanExtractContentItemsFromEmailDetails() {
-        $parser = new \Swiftriver\Core\Modules\SiSPS\Parsers\TwitterSearchParser();
+        $parser = new \Swiftriver\Core\Modules\SiSPS\Parsers\EmailParser();
         $content = $parser->GetAndParse(
                 array(
                     "email_ssl" => false,

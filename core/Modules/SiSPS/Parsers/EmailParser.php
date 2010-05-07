@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 namespace Swiftriver\Core\Modules\SiSPS\Parsers;
-class EmailParser {//implements IParser {
+class EmailParser { //implements IParser {
     /**
      * Implementation of IParser::GetAndParse
      * @param string[] $parameters
@@ -56,7 +56,7 @@ class EmailParser {//implements IParser {
         include_once $config->ModulesDirectory."/Imap/Imap.php";
 
 
-        $check_email = new Imap($email_ssl,$email_servertype,$email_host,$email_port,$email_username,$email_password);
+        $check_email = new \Imap($email_ssl,$email_servertype,$email_host,$email_port,$email_username,$email_password);
         $messages = $check_email->get_messages();
 
 	// Close Connection

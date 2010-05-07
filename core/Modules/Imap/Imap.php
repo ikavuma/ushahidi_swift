@@ -1,4 +1,4 @@
-<?php defined('SYSPATH') OR die('No direct access allowed.');
+<?php 
 /**
  * Imap library. Wrapper to read email using IMAP/POP3. 
  * @package    Imap
@@ -33,26 +33,24 @@ class Imap {
 		More Info about above options at:
 		http://php.net/manual/en/function.imap-open.php
 		*/
-		
-		
+		$imap_stream = null;
+		$logger = \Swiftriver\Core\Setup::GetLogger();
 		$service = "{".$email_host.":"
 			.$email_port."/"
 			.$email_servertype
-			.$notls.$ssl.$novalidate."}";
+			.$notls.$ssl.$novalidate."}INBOX";
+            try{
 
-		$imap_stream =	imap_open($service, $email_username,$email_password);
-
-                 $logger = \Swiftriver\Core\Setup::GetLogger();
-		if (!$imap_stream)
-                {
-                    $logger->log("Core::Modules::Imap::__contruct [imap.imap_stream_not_opened,".imap_last_error()."]",\PEAR_LOG_ERROR);
-                }
-                else
-                {
-                     $logger->log("Core::Modules::Imap::__contruct [imap.imap_stream_opened Successfully]", \PEAR_LOG_DEBUG);
-                }
-	
-		$this->imap_stream = $imap_stream;
+                $imap_stream =	imap_open($service, $email_username,$email_password);
+            
+            }catch(Exception $e){
+                
+                    $logger->log("Core::Modules::Imap::__contruct [imap.imap_stream_not_opened,".$e->getMessage()."]",\PEAR_LOG_ERROR);
+                return null;
+           }
+                
+                $logger->log("Core::Modules::Imap::__contruct [imap.imap_stream_opened Successfully]", \PEAR_LOG_DEBUG);
+                $this->imap_stream = $imap_stream;
 	}
 
 	/**
