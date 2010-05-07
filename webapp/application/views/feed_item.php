@@ -63,7 +63,9 @@
                             <img src="<?php echo url::base(); ?>/media/img/tagbtn.png" alt="<?php echo $feed_title ?>" align="absmiddle" style="border:0" />
                             <label id="lbltags_<?php echo $feed_id; ?>" name="lbltags_<?php echo $feed_id; ?>" >
                             <?php
+
                             	if (isset($feed->tags)){
+
                                 foreach($feed->tags as $tag) {
                                     if($tag->type == "what") { $tags->What[] = $tag; }
                                     else if ($tag->type == "where") { $tags->Where[] = $tag; }
@@ -82,8 +84,9 @@
                             <?php 
                                 unset($tags);
                             ?>
-                            <?php endforeach; 
-														} ?>
+                            <?php endforeach;
+                            } ?>
+
                             </label>
                             <div style="float:right">
                                 <a href="<?php echo $feed->item_link; ?>" target="_blank"  title="Item Detail, Read the Item" >

@@ -55,8 +55,7 @@ class TwitterSearchParser implements IParser {
                 curl_setopt($ch, CURLOPT_POST, 1);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $twitter_postfields);
                 $buffer=curl_exec($ch);
-                //$have_results = $this->add__sontweets($buffer,$hashtag); //if FALSE, we will drop out of the loop
-                $this->add_json_tweets($buffer,$lastsucess,$source); //if FALSE, we will drop out of the loop
+                $have_results = $this->add_json_tweets($buffer,$lastsucess,$source); //if FALSE, we will drop out of the loop
                 $page++;
         }
 
@@ -117,11 +116,6 @@ class TwitterSearchParser implements IParser {
                 $this->Contentitems[] = $item;
         }
         return true;
-
     }
-
-
-
-
 }
 ?>
