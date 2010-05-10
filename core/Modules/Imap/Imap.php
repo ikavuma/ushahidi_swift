@@ -6,6 +6,7 @@
  * @copyright  (c) 2009 Ushahidi Team
  * @license    http://www.ushahidi.com/license.html
  */
+
 class Imap {
 
 	private $imap_stream;
@@ -27,8 +28,7 @@ class Imap {
 		$novalidate = "/novalidate-cert";
 		
 		// If POP3 Disable TLS
-		$notls = strtolower($email_servertype) == "pop3" ? "/notls" : "";
-		
+			
 		/*
 		More Info about above options at:
 		http://php.net/manual/en/function.imap-open.php
@@ -38,18 +38,18 @@ class Imap {
 		$service = "{".$email_host.":"
 			.$email_port."/"
 			.$email_servertype
-			.$notls.$ssl.$novalidate."}INBOX";
+			.$ssl."}";
             try{
 
-                $imap_stream =	imap_open($service, $email_username,$email_password);
+                $imap_stream =	imap_open( $service , $email_username,$email_password);
             
             }catch(Exception $e){
                 
-                    $logger->log("Core::Modules::Imap::__contruct [imap.imap_stream_not_opened,".$e->getMessage()."]",\PEAR_LOG_ERROR);
-                return null;
+                $logger->log("Core::Modules::Imap::__contruct [imap.imap_stream_not_opened,".$e->getMessage()."]","[Error]");
+                throw($e);
            }
                 
-                $logger->log("Core::Modules::Imap::__contruct [imap.imap_stream_opened Successfully]", \PEAR_LOG_DEBUG);
+                $logger->log("Core::Modules::Imap::__contruct [imap.imap_stream_opened Successfully]", "[Debug]");
                 $this->imap_stream = $imap_stream;
 	}
 

@@ -25,13 +25,14 @@ class EmailParserTest extends \PHPUnit_Framework_TestCase {
      * array of content Items.
      */
     public function testThatTheEmailParserCanExtractContentItemsFromEmailDetails() {
+        $this->setUp();
         $parser = new \Swiftriver\Core\Modules\SiSPS\Parsers\EmailParser();
         $content = $parser->GetAndParse(
                 array(
-                    "email_ssl" => false,
-                    "email_servertype" => "imap",
-                    "email_host" => "imap.gmail.com",
-                    "email_port" => "993",
+                    "email_ssl" => true,
+                    "email_servertype" => "pop3",
+                    "email_host" => "pop.gmail.com",
+                    "email_port" => "995",
                     "email_username" => "ushahidi.swift@gmail.com",
                     "email_password" => "swift.river"
                 ),
