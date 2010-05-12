@@ -16,6 +16,7 @@ class EmailParser { //implements IParser {
     private $Contentitems = array();
 
     public function GetAndParse($parameters, $lastsucess) {
+
         $logger = \Swiftriver\Core\Setup::GetLogger();
         $logger->log("Core::Modules::SiSPS::Parsers::EmailParser::GetAndParse [Method invoked]", \PEAR_LOG_DEBUG);
 
@@ -76,6 +77,7 @@ class EmailParser { //implements IParser {
 
     private function add_email($messages)
     {
+        $logger = \Swiftriver\Core\Setup::GetLogger();
         if (empty($messages) || !is_array($messages)) {
                 return false;
         }

@@ -24,13 +24,11 @@ class TwitterAccountParserTest extends \PHPUnit_Framework_TestCase {
      * valid feedUrl, the RSSParser can correctly extract an
      * array of content Items.
      */
-    public function testThatTheRSSParserCanExtractContentItemsFromTheTwitterAccount() {
-        $parser = new \Swiftriver\Core\Modules\SiSPS\Parsers\RSSParser();
-        $TwitterAccount = 'appfrica';
-        $url = "http://twitter.com/statuses/user_timeline/".$TwitterAccount.".rss";
+    public function testThatTwitterAccountParserCanExtractContentItemsFromTheTwitterAccount() {
+        $parser = new \Swiftriver\Core\Modules\SiSPS\Parsers\TwitterAccountParser();
         $content = $parser->GetAndParse(
                 array(
-                    "feedUrl" => $url
+                    "TwitterAccount" => "appfrica"
                 ),
                 mktime(0, 0, 0, 1, 1, 1970)
         );
